@@ -1,0 +1,12 @@
+
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Palvelin-->Selain: html
+note over Selain: spa hakee tyylitiedoston ja \nJavaScript tiedoston palvelimelta
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Palvelin-->Selain: main.css
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Palvelin-->Selain: spa.js
+note over Selain: JavaScript-koodi hakee datan \npalvelimelta JSON-muodossa
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Palvelin-->Selain: data.json
+note over Selain: Selain tulostaa muistiinpanot \n-json-tiedostosta näytölle JavaScript-koodilla

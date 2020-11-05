@@ -1,0 +1,6 @@
+note over Selain: Käyttäjä kirjoittaa ja lähettää muistiinpanon
+Selain->Selain: JavaScript-koodi tulostaa \nuuden muistiinpanon näytölle
+note over Selain: Selain lähettää muistiinpanon \npalvelimelle .json-muodossa
+Selain->Palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+Palvelin-->Selain: statuskoodi 201 ja viesti: note created
+

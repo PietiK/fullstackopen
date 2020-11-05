@@ -1,0 +1,15 @@
+note over Selain: Käyttäjä kirjoittaa muistiinpanon ja painaa SAVE
+Selain->Palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+Palvelin-->Palvelin: Palvelin luo uuden muistiinpanon \nPOST-pyynnön mukana tulleesta datasta
+Palvelin-->Selain: 302 Uudelleenohjauspyyntö
+note over Selain: Uudelleenohjauspyyntö aiheuttaa \nsivun uudelleen lataamisen
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Palvelin-->Selain: notes
+note over Selain: Sivun päivitys saa aikaan kolme\n muutakin HTTP GET pyyntöä
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Palvelin-->Selain: main.css
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Palvelin-->Selain: main.js
+note over Selain: Selain https://www.websequencediagrams.com/logo.svgsuorittaa JavaScript-koodia, \n joka pyytää JSON datan palvelimelta
+Selain->Palvelin: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Palvelin-->Selain: data.json
