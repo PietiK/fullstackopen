@@ -1,0 +1,79 @@
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+
+const Button = ({ onClick, text }) => (
+  <button onClick={onClick}>
+    {text}
+  </button>
+)
+
+const Statistics = (props) => {
+  
+}
+
+const App = () => {
+  // tallenna napit omaan tilaansa
+  const [arvostelut, setArvostelut] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+    all: 0,
+    average: 0,
+    positive: 0,
+    }
+  )
+
+  const handleGoodClick = () => {
+    const newArvostelut = { 
+      ...arvostelut, 
+      good: arvostelut.good + 1,
+      all: arvostelut.all + 1,
+      average: (arvostelut.all - arvostelut.bad - arvostelut.neutral) / arvostelut.all,
+      positive: arvostelut.good / arvostelut.all * 100
+    }
+    setArvostelut(newArvostelut)
+  }
+
+  const handleNeutralClick = () => {
+    const newArvostelut = { 
+      ...arvostelut, 
+      neutral: arvostelut.neutral + 1,
+      all: arvostelut.all + 1,
+      average: (arvostelut.all - arvostelut.bad - arvostelut.neutral)/ arvostelut.all,
+      positive: arvostelut.good / arvostelut.all * 100
+    }
+    setArvostelut(newArvostelut)
+  }
+
+  const handleBadClick = () => {
+    const newArvostelut = { 
+      ...arvostelut, 
+      bad: arvostelut.bad + 1,
+      all: arvostelut.all + 1,
+      average: (arvostelut.all - arvostelut.bad - arvostelut.neutral)/ arvostelut.all,
+      positive: arvostelut.good / arvostelut.all * 100
+    }
+    setArvostelut(newArvostelut)
+  }
+
+  return (
+    <div>
+      <h1>Give feedback</h1>
+      <Button onClick={handleGoodClick} text='Good'/>
+      <Button onClick={handleNeutralClick} text='Neutral'/>
+      <Button onClick={handleBadClick} text='Bad'/>
+      <p></p>
+      <h2>Stats</h2>
+      <p>Good {arvostelut.good}</p>
+      <p>Neutral {arvostelut.neutral}</p>
+      <p>Bad {arvostelut.bad}</p>
+      <p>All {arvostelut.all}</p>
+      <p>Average {arvostelut.average}</p>
+      <p>positive {arvostelut.positive}</p>
+    </div>
+  )
+}
+
+ReactDOM.render(<App />, 
+  document.getElementById('root')
+)
