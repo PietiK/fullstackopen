@@ -9,32 +9,34 @@ const Button = ({ onClick, text }) => (
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
-  const [votes, setVotes] = useState([
-    {id: 0, value: 0},
-    {id: 1, value: 0},
-    {id: 2, value: 0},
-    {id: 3, value: 0},
-    {id: 4, value: 0},
-    {id: 5, value: 0},
-    {id: 6, value: 0},
-  ]
-  )
+  const [votes, setVotes] = useState(
+    new Array(anecdotes.length).fill(0))
+  const [numero, setNumero] = useState(0)
 
-  const handleClick = () => {
-    const numero = Math.floor(Math.random() * 5)
-    console.log(numero)
-    console.log(votes, votes.numero, votes.value)
-    const pisteet = {...votes}
+  const handleSeuraavaClick = () => {
+    setNumero(Math.floor(Math.random() * anecdotes.length))
     setSelected(numero)
+  }
+
+  const handleVoteClick = () => {
+    const vanha = votes[selected]
+    const pisteet = [...votes]
+    pisteet[selected] = vanha + 1
     setVotes(pisteet)
   }
 
   return (
     <div>
-      <Button onClick={handleClick} text='Seuraava'/>
+      <h1>Päivän anekdootti</h1>
       <p></p>
       {props.anecdotes[selected]}
-      <p>Votes: {votes.numero}</p>
+      <p>Votes: {votes[selected]}</p>
+      <Button onClick={handleSeuraavaClick} text='Seuraava'/>
+      <Button onClick={handleVoteClick} text='Vote'/>
+      <p></p>
+      <h2>Suosituin anekdootti</h2>
+      {props.anecdotes[votes.indexOf(Math.max(...votes))]}
+      <p>Äänimäärä {Math.max(...votes)}</p>
     </div>
   )
 }
